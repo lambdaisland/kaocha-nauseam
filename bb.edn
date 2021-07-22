@@ -1,0 +1,10 @@
+
+{:paths ["bin"]
+ :tasks 
+ {generate-simple (let [file4 "(ns lambdaisland.simple.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 1)))))" ]
+             (doseq [n (range 100)] 
+               (spit  (str "test/lambdaisland/simple/nausem" (format "%02d" n) "_test.clj") (format file4 n)))
+             )
+  
+  }
+ }

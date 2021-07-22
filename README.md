@@ -4,6 +4,21 @@
 [![CircleCI](https://circleci.com/gh/lambdaisland/{project}.svg?style=svg)](https://circleci.com/gh/lambdaisland/{project}) [![cljdoc badge](https://cljdoc.org/badge/lambdaisland/{project})](https://cljdoc.org/d/lambdaisland/{project}) [![Clojars Project](https://img.shields.io/clojars/v/lambdaisland/{project}.svg)](https://clojars.org/lambdaisland/{project})
 <!-- /badges -->
 
+## Usage
+
+To generate the tests:
+
+    bb generate-simple
+
+To run the tests:
+
+    bin/kaocha
+
+TO run the tests against a local copy of `kaocha`:
+
+    clojure -A:dev:test-local -m kaocha.runner
+
+
 ## License
 
 Copyright &copy; 2021 Arne Brasseur and Contributors
