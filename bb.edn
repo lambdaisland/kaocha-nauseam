@@ -1,10 +1,16 @@
 
 {:paths ["bin"]
  :tasks 
- {generate-simple (let [file4 "(ns lambdaisland.simple.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 1)))))" ]
+ {generate-simple (let [file-str "(ns lambdaisland.simple.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 1)))))" ]
              (doseq [n (range 100)] 
-               (spit  (str "test/lambdaisland/simple/nausem" (format "%02d" n) "_test.clj") (format file4 n)))
-             )
-  
-  }
- }
+               (spit  (str "test/lambdaisland/simple/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
+generate-simple-fail (let [file-str "(ns lambdaisland.simple-fail.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 2)))))" ]
+             (doseq [n (range 100)] 
+               (spit  (str "test/lambdaisland/simple_fail/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
+
+  generate-io (let []
+                
+                )
+
+  generate-all (do (run generate-simple)
+                   (run generate-io))}}
