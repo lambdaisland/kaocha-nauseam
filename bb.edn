@@ -8,9 +8,8 @@ generate-simple-fail (let [file-str "(ns lambdaisland.simple-fail.nausem%02d-tes
              (doseq [n (range 100)] 
                (spit  (str "test/lambdaisland/simple_fail/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
 
-  generate-io (let []
-                
-                )
-
-  generate-all (do (run generate-simple)
-                   (run generate-io))}}
+generate-io (let [file  "(ns lambdaisland.io.nausem%03d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (not (empty? (slurp \"README.md\")))) ))" ] 
+              (doseq [n (range 1000)] 
+                (spit  (str "test/lambdaisland/io/nausem" (format "%03d" n) "_test.clj") (format file n) )))
+generate-all (do (run generate-simple)
+                 (run generate-io))}}

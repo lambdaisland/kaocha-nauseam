@@ -1,3 +1,17 @@
 #kaocha/v1
 {:parallel true
- :plugins [:notifier :print-invocations :profiling]}
+ :plugins [:notifier :print-invocations :profiling]
+ 
+ :tests [ {:id :unit
+        :test-paths ["test"] }
+         {:id :simple
+         :test-paths ["test/lambdaisland/simple"] 
+          }
+         {:id :simple-fail
+         :test-paths ["test/lambdaisland/simple_fail"] 
+          }
+         {:id :io
+         :test-paths ["test/lambdaisland/io"] 
+          }
+         ]
+ }

@@ -14,7 +14,7 @@ To run the tests:
 
     bin/kaocha
 
-TO run the tests against a local copy of `kaocha`:
+To run the tests against a local copy of `kaocha`:
 
     clojure -A:dev:test-local -m kaocha.runner
 
