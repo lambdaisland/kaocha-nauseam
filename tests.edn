@@ -13,5 +13,5 @@
          {:id :io
          :test-paths ["test/lambdaisland/io"] 
           }
-         ]
- }
+         {:id :wiki
+         :test-paths ["test/lambdaisland/wiki"] } ] }
