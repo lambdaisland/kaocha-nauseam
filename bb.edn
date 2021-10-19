@@ -3,7 +3,14 @@
  :tasks 
  {generate-simple (let [file-str "(ns lambdaisland.simple.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 1)))))" ]
              (doseq [n (range 100)] 
-               (spit  (str "test/lambdaisland/simple/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
+               (spit  (str "test/lambdaisland/simple_nested/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
+  generate-simple-nested  (let [header "(ns lambdaisland.simple-nested.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n"
+                                tests (for [i (range 100)] (format "(deftest should-pass-%d\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 1)))))\n" i) )
+                                tests-str (apply str tests)
+                                file-str (str header tests-str)]
+             (doseq [n (range 10)] 
+               (spit  (str "test/lambdaisland/simple_nested/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
+ 
 generate-simple-fail (let [file-str "(ns lambdaisland.simple-fail.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 2)))))" ]
              (doseq [n (range 100)] 
                (spit  (str "test/lambdaisland/simple_fail/nausem" (format "%02d" n) "_test.clj") (format file-str n))))
@@ -15,10 +22,10 @@ generate-wiki (let [file  "(ns lambdaisland.wiki.nausem%02d-test\n(:require [clo
               (doseq [n (range 25)] 
                 (spit  (str "test/lambdaisland/wiki/nausem" (format "%02d" n) "_test.clj") (format file n) )))
 
-(generate-sqrts (let [file  "(ns lambdaisland.wiki.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"calculation heavy test\"\n  (is (< (last (for [n (range 1000)] (Math/sqrt n))) 100 ))  ))" ] 
+ generate-sqrts (let [file  "(ns lambdaisland.wiki.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"calculation heavy test\"\n  (is (< (last (for [n (range 1000)] (Math/sqrt n))) 100 ))  ))" ] 
                   (doseq [n (range 25)] 
                     (spit  (str "test/lambdaisland/wiki/nausem" (format "%02d" n) "_test.clj") (format file n) )))
-              )
+               
 
 generate-all (do (run generate-simple)
                  (run generate-io))}}

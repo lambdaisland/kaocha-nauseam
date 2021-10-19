@@ -1,17 +1,19 @@
 #kaocha/v1
 {:parallel true
+;;  :parallel-test-level true
+:parallel-children-exclude [:kaocha.type/var]
  :plugins [:notifier :print-invocations :profiling]
  
  :tests [ {:id :unit
         :test-paths ["test"] }
+         {:id :pass-only}
          {:id :simple
-         :test-paths ["test/lambdaisland/simple"] 
-          }
+         :test-paths ["test/lambdaisland/simple"]}
+         {:id :simple-nested
+         :test-paths ["test/lambdaisland/simple_nested"]}
          {:id :simple-fail
-         :test-paths ["test/lambdaisland/simple_fail"] 
-          }
+         :test-paths ["test/lambdaisland/simple_fail"]}
          {:id :io
-         :test-paths ["test/lambdaisland/io"] 
-          }
+         :test-paths ["test/lambdaisland/io"]}
          {:id :wiki
-         :test-paths ["test/lambdaisland/wiki"] } ] }
+         :test-paths ["test/lambdaisland/wiki"]}]}
