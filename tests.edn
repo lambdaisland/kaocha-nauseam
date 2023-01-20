@@ -2,11 +2,16 @@
 {:parallel true
 ;;  :parallel-test-level true
 :parallel-children-exclude [:kaocha.type/var]
- :plugins [:notifier :print-invocations :profiling]
+  :plugins [:notifier :print-invocations :profiling ;:kaocha.plugin.alpha/parallel-profiling
+            ]
  
  :tests [ {:id :unit
         :test-paths ["test"] }
-         {:id :pass-only}
+         {:id :pass-only
+          :test-paths ["test/lambdaisland/simple"
+                       "test/lambdaisland/simple_nested"
+                       "test/lambdaisland/io"
+                       "test/lambdaisland/wiki"]}
          {:id :simple
          :test-paths ["test/lambdaisland/simple"]}
          {:id :simple-nested

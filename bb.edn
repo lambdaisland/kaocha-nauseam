@@ -1,5 +1,8 @@
 
 {:paths ["bin"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        lambdaisland/kaocha {:git/url "https://github.com/lambdaisland/kaocha.git"
+                             :git/sha "1119b30ae9b4410ea49956543f2eccc07fb5dfa5"}}
  :tasks 
  {generate-simple (let [file-str "(ns lambdaisland.simple.nausem%02d-test\n(:require [clojure.test :refer :all])\n)\n\n(deftest should-pass\n(testing \"ridiculous test that should pass\"\n  (is (do (Thread/sleep 1000) (= 1 1)))))" ]
              (doseq [n (range 100)] 
